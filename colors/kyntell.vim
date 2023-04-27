@@ -100,7 +100,7 @@ let s:type_color    = s:yellow_main
 let s:blue_magenta4 = color#Lighten(s:blue_magenta, 0.0)
 
 let s:bg             = color#Mix(s:base3, s:base4, 0.2)
-let s:bg_alt         = s:base4
+let s:bg_alt         = s:base2
 let s:bg_highlight   = color#Lighten(s:bg, 0.3)
 let s:bg_popup       = color#Mix(s:base4, s:base5, 0.7)
 let s:bg_widget      = s:bg
@@ -559,7 +559,7 @@ hi! link IlluminatedWordWrite IlluminateWord
 
 call s:h('SidebarNvimNormal',           s:fg,           s:bg_alt, 'none')
 call s:h('SidebarNvimSectionSeparator', s:fg_separator, s:bg_alt)
-call s:h('SidebarNvimSectionTitle',     s:yellow, s:bg_alt, 'bold')
+call s:h('SidebarNvimSectionTitle',     s:yellow,       s:bg_alt, 'bold')
 call s:h('SidebarNvimEndOfBuffer',      s:bg_alt,       s:bg_alt, 'none')
 
 hi! link SidebarNvimLabelCount Comment
