@@ -9,6 +9,3 @@
 { 'romgrk/kyntell.vim' }
 ```
 
-## Screenshot
-
-![theme](./static/demo.png)
