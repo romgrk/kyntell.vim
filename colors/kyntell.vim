@@ -7,7 +7,7 @@ end
 let colors_name = 'kyntell'
 
 " Highlighting function {{{
-function! s:_ (name, ...)
+function! s:h (name, ...)
   let fg = ''
   let bg = ''
   let attr = ''
@@ -65,12 +65,13 @@ let s:base8      = '#a0a0a0'
 let s:base9      = '#b1b1b1'
 let s:base10     = '#e6e6e6'
 
+let s:black      = '#000000'
 let s:grey       = s:base4
 let s:red        = '#ff6c6b'
 let s:orange     = '#da8548'
-let s:green      = '#98be65'
+let s:green      = '#88DC81'
 let s:teal       = '#4db5bd'
-let s:yellow     = '#ECBE7B'
+let s:yellow     = '#ECCC7B'
 let s:blue       = '#51afef'
 let s:dark_blue  = '#2257A0'
 let s:magenta    = '#c678dd'
@@ -81,19 +82,34 @@ let s:white      = '#efefef'
 
 let s:green_alt  = '#799033'
 
-let s:magenta4 = color#Darken(s:magenta, 0.0)
+let s:blue_main     = '#10b1fe'
+let s:blue_violet   = '#91B6FF'
+let s:blue_magenta  = '#82B4FF'
+let s:blue_desat    = '#ABB7E0'
 
-let s:bg             = s:base3
+let s:yellow_main = '#e5ce5c'
+
+let s:keyword_color = s:blue_main
+let s:string_color  = '#f9c859'
+let s:fn_color      = '#DFD9A3'
+let s:number_color  = s:orange
+let s:ident_color   = color#Lighten(s:blue_desat, 0.1)
+let s:prop_color    = s:yellow
+let s:type_color    = s:yellow_main
+
+let s:blue_magenta4 = color#Lighten(s:blue_magenta, 0.0)
+
+let s:bg             = color#Mix(s:base3, s:base4, 0.2)
 let s:bg_alt         = s:base4
-let s:bg_highlight   = color#Lighten(s:bg, 0.5)
-let s:bg_popup       = s:base4
+let s:bg_highlight   = color#Lighten(s:bg, 0.3)
+let s:bg_popup       = color#Mix(s:base4, s:base5, 0.7)
 let s:bg_widget      = s:bg
 let s:bg_statusline  = color#Lighten(s:base4, 0.3)
-let s:bg_visual      = color#Lighten(s:base4, 0.3)
+let s:bg_visual      = color#Lighten(s:bg, 0.8)
 let s:bg_selection   = s:dark_blue
-let s:bg_highlighted = s:base4
+let s:bg_highlighted = s:base5
 
-let s:fg           = '#bbc2cf'
+let s:fg           = '#C9D2E1'
 let s:fg_alt       = '#5B6268'
 let s:fg_popup     = '#D1D6DF'
 let s:fg_widget    = s:fg
@@ -104,12 +120,12 @@ let s:fg_linenr    = color#Mix(s:base4, s:base5, 0.9)
 let s:fg_separator = s:base4
 
 
-let s:highlight       = s:blue
+let s:highlight       = s:blue_main
 let s:hightlight_fg = s:base0
 
-let s:tag    = color#Mix(s:blue, s:cyan)
+let s:tag    = color#Mix(s:blue_main, s:cyan)
 
-let s:diff_info_fg  = s:blue
+let s:diff_info_fg  = s:blue_main
 let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
 let s:diff_info_bg1 = color#Mix('#D8EEFD', s:bg, 0.8)
 
@@ -128,67 +144,73 @@ let s:gh_danger_bg2 = color#Mix('#FBB0B9', s:bg, 0.9)
 " }}}
 " General UI                                                                 {{{
 
-call s:_('Normal',            s:fg,           s:bg)
-call s:_('EndOfBuffer',       s:bg,           s:bg)
-call s:_('NormalPopup',       s:fg_highlight, s:bg_popup)
-call s:_('NormalPopover',     s:fg_highlight, s:bg_popup)
-call s:_('NormalPopupPrompt', s:base7,        color#Darken(s:bg_popup, 0.3), 'bold')
-call s:_('NormalPopupSubtle', s:base6,        s:bg_popup)
-call s:_('NormalText',        s:fg,           'none')
+call s:h('Normal',            s:fg,           s:bg)
+call s:h('EndOfBuffer',       s:bg,           s:bg)
+call s:h('NormalPopup',       s:fg_highlight, s:bg_popup)
+call s:h('NormalPopover',     s:fg_highlight, s:bg_popup)
+call s:h('NormalPopupPrompt', s:base7,        color#Darken(s:bg_popup, 0.3), 'bold')
+call s:h('NormalPopupSubtle', s:base6,        s:bg_popup)
+call s:h('NormalText',        s:fg,           'none')
 
-call s:_('Cursor',           '', s:base0,  'reverse')
-call s:_('SecondaryCursor',  '', s:highlight, 'none')
+call s:h('Cursor',           '', s:base0,  'reverse')
+call s:h('SecondaryCursor',  '', s:highlight, 'none')
 
-call s:_('Folded',           s:base7,  s:bg_highlight, 'none')
-call s:_('FoldColumn',       s:fg_alt, s:bg_widget, '')
-call s:_('SignColumn',       '',       s:bg_widget, '')
-call s:_('ColorColumn',      '',       s:bg_highlight, '')
+call s:h('Folded',           s:base7,  s:bg_highlight, 'none')
+call s:h('FoldColumn',       s:fg_alt, s:bg_widget, '')
+call s:h('SignColumn',       '',       s:bg_widget, '')
+call s:h('ColorColumn',      '',       s:bg_highlight, '')
 
-call s:_('CursorLine',       '',          s:bg_highlight)
-call s:_('CursorColumn',     '',          s:bg_highlight)
-call s:_('CursorLineNr',     s:highlight, s:bg_highlight, 'none')
-call s:_('LineNr',           s:fg_linenr, s:bg_widget,    'none')
+call s:h('CursorLine',       '',          s:bg_highlight)
+call s:h('CursorColumn',     '',          s:bg_highlight)
+call s:h('CursorLineNr',     s:highlight, s:bg_highlight, 'none')
+call s:h('LineNr',           s:fg_linenr, s:bg_widget,    'none')
 
-call s:_('IndentGuide',      s:base4, '', '')
-call s:_('IndentGuidesEven', s:base4, '', '')
-call s:_('IndentGuidesOdd',  s:base4, '', '')
+call s:h('IndentGuide',      s:base4, '', '')
+call s:h('IndentGuidesEven', s:base4, '', '')
+call s:h('IndentGuidesOdd',  s:base4, '', '')
 
-call s:_('TermCursor',       s:fg,        'none',            'reverse')
-call s:_('TermCursorNC',     s:fg_alt,    'none',            'reverse')
-call s:_('TermNormal',       s:fg,        s:base0,    '')
+call s:h('TermCursor',       s:fg,        'none',            'reverse')
+call s:h('TermCursorNC',     s:fg_alt,    'none',            'reverse')
+call s:h('TermNormal',       s:fg,        s:base0,    '')
 hi! link TermNormalNC TermNormal
 
 
-call s:_('Visual',         '', s:bg_visual)
-call s:_('VisualBold',     '', s:bg_visual, 'bold')
+call s:h('Visual',         '', s:bg_visual)
+call s:h('VisualBold',     '', s:bg_visual, 'bold')
 
-call s:_('WildMenu',       s:fg,            s:bg_selection)
+call s:h('WildMenu',       s:fg,            s:bg_selection)
 
-call s:_('StatusLine',       s:base8,  s:bg_statusline, 'none')
-call s:_('StatusLineNC',     s:base6,  s:bg_statusline, 'none')
-call s:_('StatusLinePart',   s:base6,  s:bg_statusline, 'bold')
-call s:_('StatusLinePartNC', s:base6,  s:bg_statusline, 'bold')
+call s:h('StatusLine',       s:base8,  s:bg_statusline, 'none')
+call s:h('StatusLineNC',     s:base6,  s:bg_statusline, 'none')
+call s:h('StatusLinePart',   s:base6,  s:bg_statusline, 'bold')
+call s:h('StatusLinePartNC', s:base6,  s:bg_statusline, 'bold')
 
-call s:_('Separator', s:fg_alt, 'none')
-call s:_('VertSplit', s:fg_separator,   s:bg, 'none')
+call s:h('Separator', s:fg_alt, 'none')
+call s:h('VertSplit', s:fg_separator,   s:bg, 'none')
 
-call s:_('Pmenu',        s:fg_popup,      s:bg_popup)
-call s:_('PmenuSel',     s:hightlight_fg, s:highlight)
-call s:_('PmenuSelBold', s:hightlight_fg, s:highlight, 'bold')
-call s:_('PmenuSbar',    '',                s:bg_alt)
-call s:_('PmenuThumb',   '#666660',         '#666660')
+call s:h('Pmenu',        s:fg_popup,      s:bg_popup)
+call s:h('PmenuSel',     s:hightlight_fg, s:highlight)
+call s:h('PmenuSelBold', s:hightlight_fg, s:highlight, 'bold')
+call s:h('PmenuSbar',    '',                s:bg_alt)
+call s:h('PmenuThumb',   '#666660',         '#666660')
 
 hi! link NormalFloat Pmenu
-call s:_('FloatBorder', s:fg_alt, s:bg)
+call s:h('FloatBorder', s:fg_alt, s:bg)
 
 if exists('&pumblend')
   set pumblend=20
 end
 
+call s:h('WinBar',          s:fg,     s:bg, 'none', s:base4)
+call s:h('WinBarSeparator', s:base6,  s:bg, 'none', s:base4)
+call s:h('WinBarModified',  s:yellow, s:bg, 'none', s:base4)
+
+
+
 " Plugin: Incline
 
-call s:_('InclineNormal',   color#Darken(s:fg, 40), 'none')
-call s:_('InclineNormalNC', color#Darken(s:fg, 40), 'none')
+call s:h('InclineNormal',   color#Darken(s:fg, 40), 'none')
+call s:h('InclineNormalNC', color#Darken(s:fg, 40), 'none')
 
 
 " Plugin: Barbar
@@ -197,34 +219,34 @@ let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base4
 
-call s:_('TabLine',             s:base9, s:bg_alt,     '')
-call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
-call s:_('TabLineFill',         'none',  s:bg_other,   'bold')
+call s:h('TabLine',             s:base9, s:bg_alt,     '')
+call s:h('TabLineSel',          s:blue_main,  s:bg_current, 'bold')
+call s:h('TabLineFill',         'none',  s:bg_other,   'bold')
 
-call s:_('BufferCurrent',       s:base10,          s:bg_current,  'none')
-call s:_('BufferCurrentIndex',  s:base7,          s:bg_current,  'none')
-call s:_('BufferCurrentMod',    s:yellow,         s:bg_current,  'none')
-call s:_('BufferCurrentSign',   s:blue,           s:bg_current,  'none')
-call s:_('BufferCurrentTarget', s:red,            s:bg_current,  'bold')
+call s:h('BufferCurrent',       s:base10,          s:bg_current,  'none')
+call s:h('BufferCurrentIndex',  s:base7,          s:bg_current,  'none')
+call s:h('BufferCurrentMod',    s:yellow,         s:bg_current,  'none')
+call s:h('BufferCurrentSign',   s:blue_main,           s:bg_current,  'none')
+call s:h('BufferCurrentTarget', s:red,            s:bg_current,  'bold')
 
-call s:_('BufferVisible',       s:base8,          s:bg_visible,  'none')
-call s:_('BufferVisibleIndex',  s:base9,          s:bg_visible,  'none')
-call s:_('BufferVisibleMod',    s:yellow,         s:bg_visible,  'none')
-call s:_('BufferVisibleSign',   s:base5,          s:bg_visible,  'none')
-call s:_('BufferVisibleTarget', s:red,            s:bg_visible,  'bold')
+call s:h('BufferVisible',       s:base8,          s:bg_visible,  'none')
+call s:h('BufferVisibleIndex',  s:base9,          s:bg_visible,  'none')
+call s:h('BufferVisibleMod',    s:yellow,         s:bg_visible,  'none')
+call s:h('BufferVisibleSign',   s:base5,          s:bg_visible,  'none')
+call s:h('BufferVisibleTarget', s:red,            s:bg_visible,  'bold')
 
-call s:_('BufferInactive',       s:base8,          s:bg_other,    'none')
-call s:_('BufferInactiveIndex',  s:base7,          s:bg_other,    'none')
-call s:_('BufferInactiveMod',    s:yellow,         s:bg_other,    'none')
-call s:_('BufferInactiveSign',   s:base5,          s:bg_other,    'none')
-call s:_('BufferInactiveTarget', s:red,            s:bg_other,    'bold')
+call s:h('BufferInactive',       s:base8,          s:bg_other,    'none')
+call s:h('BufferInactiveIndex',  s:base7,          s:bg_other,    'none')
+call s:h('BufferInactiveMod',    s:yellow,         s:bg_other,    'none')
+call s:h('BufferInactiveSign',   s:base5,          s:bg_other,    'none')
+call s:h('BufferInactiveTarget', s:red,            s:bg_other,    'bold')
 
-call s:_('BufferTabpages',       s:blue,           s:bg_statusline, 'bold')
-call s:_('BufferTabpageFill',    s:base5,          s:bg_other,    'bold')
-call s:_('BufferOffset',         s:base6,          s:bg,          'bold')
-call s:_('BufferScrollArrow',    s:base8,          s:bg_other,       'bold')
+call s:h('BufferTabpages',       s:blue_main,           s:bg_statusline, 'bold')
+call s:h('BufferTabpageFill',    s:base5,          s:bg_other,    'bold')
+call s:h('BufferOffset',         s:base6,          s:bg,          'bold')
+call s:h('BufferScrollArrow',    s:base8,          s:bg_other,       'bold')
 
-call s:_('BufferPart',        s:diff_info_fg,   s:diff_info_bg0, 'bold')
+call s:h('BufferPart',        s:diff_info_fg,   s:diff_info_bg0, 'bold')
 
 if has("nvim") && get(g:, 'doom_one_terminal_colors', v:false)
   let g:terminal_color_0 = s:bg
@@ -232,15 +254,15 @@ if has("nvim") && get(g:, 'doom_one_terminal_colors', v:false)
   let g:terminal_color_2 = s:green_alt
   let g:terminal_color_3 = s:orange
   let g:terminal_color_4 = s:dark_blue
-  let g:terminal_color_5 = s:magenta
+  let g:terminal_color_5 = s:blue_magenta
   let g:terminal_color_6 = s:dark_cyan
   let g:terminal_color_7 = s:fg
   let g:terminal_color_8 = s:grey
   let g:terminal_color_9 = s:orange
   let g:terminal_color_10 = s:green
   let g:terminal_color_11 = s:yellow
-  let g:terminal_color_12 = s:blue
-  let g:terminal_color_13 = s:violet
+  let g:terminal_color_12 = s:blue_main
+  let g:terminal_color_13 = s:blue_violet
   let g:terminal_color_14 = s:cyan
   let g:terminal_color_15 = s:white
   let g:terminal_color_background = s:bg
@@ -254,46 +276,46 @@ endif
 let s:bg_search         = color#Mix(s:yellow, s:bg, 0.8)
 let s:bg_search_current = s:orange
 
-call s:_('Search',          '', s:bg_search,         'none')
-call s:_('IncSearch',       s:hightlight_fg, s:bg_search_current, 'none')
-call s:_('IncSearchCursor', s:hightlight_fg, s:white,             'none')
+call s:h('Search',          '', s:bg_search,         'none')
+call s:h('IncSearch',       s:hightlight_fg, s:bg_search_current, 'none')
+call s:h('IncSearchCursor', s:hightlight_fg, s:white,             'none')
 
-call s:_('Conceal',         s:fg_conceal, 'none', '')
-call s:_('SpecialKey',      s:violet,     'none', 'bold')
-call s:_('NonText',         s:fg_alt,     '',     'bold')
-call s:_('MatchParen',      s:red,        'none', 'bold')
-call s:_('Whitespace',      s:base4,      '',     '')
+call s:h('Conceal',         s:fg_conceal, 'none', '')
+call s:h('SpecialKey',      s:blue_violet,     'none', 'bold')
+call s:h('NonText',         s:fg_alt,     '',     'bold')
+call s:h('MatchParen',      s:red,        'none', 'bold')
+call s:h('Whitespace',      s:base4,      '',     '')
 
 
-call s:_('Highlight',       '', s:bg_highlighted, 'none')
-call s:_('HighlightSubtle', '', s:bg_highlighted, 'none')
+call s:h('Highlight',       '', s:bg_highlighted, 'none')
+call s:h('HighlightSubtle', '', s:bg_highlighted, 'none')
 
-call s:_('Question',        s:green, '', 'bold')
+call s:h('Question',        s:green, '', 'bold')
 
-call s:_('File',            s:fg,      '', 'bold')
-call s:_('Directory',       s:yellow,  '', 'bold')
-call s:_('Section',         s:magenta, '', 'bold')
-call s:_('Title',           s:violet,  '', 'bold')
+call s:h('File',            s:fg,      '', 'bold')
+call s:h('Directory',       s:yellow,  '', 'bold')
+call s:h('Section',         s:blue_magenta, '', 'bold')
+call s:h('Title',           s:blue_violet,  '', 'bold')
 
-call s:_('Bold', '', '', 'bold')
-call s:_('Emphasis', s:green, '', 'bold')
+call s:h('Bold', '', '', 'bold')
+call s:h('Emphasis', s:green, '', 'bold')
 
 " Text levels                                                                {{{
 
 let s:text_colors = {
 \ 'Normal':  s:fg,
-\ 'Info':    s:blue,
+\ 'Info':    s:blue_main,
 \ 'Hint':    s:teal,
 \ 'Success': s:green,
 \ 'Warning': s:yellow,
 \ 'Debug':   s:yellow,
 \ 'Error':   s:red,
-\ 'Special': s:violet,
+\ 'Special': s:blue_violet,
 \ 'Muted':   s:base7,
 \}
 for key in keys(s:text_colors)
-  call s:_('Text' . key,          s:text_colors[key], '', '')
-  call s:_('Text' . key . 'Bold', s:text_colors[key], '', 'bold')
+  call s:h('Text' . key,          s:text_colors[key], '', '')
+  call s:h('Text' . key . 'Bold', s:text_colors[key], '', 'bold')
 endfor
 
 " NOTE/DONE/TODO/FIXME/XXX/DEPRECATED comment highlights
@@ -320,118 +342,110 @@ hi link LspDiagnosticsDefaultInformation TextInfo
 " }}}
 " Main Syntax                                                                {{{
 
-call s:_('Tag',                  s:tag, '',        'underline')
-call s:_('Link',                 s:tag, '',        'underline')
-call s:_('URL',                  s:tag, '',        'underline')
+call s:h('Tag',                  s:tag, '',        'underline')
+call s:h('Link',                 s:tag, '',        'underline')
+call s:h('URL',                  s:tag, '',        'underline')
 hi! link Underlined     URL
 
-call s:_('Comment',              s:base6, '',        '')
-call s:_('CommentBold',          s:base6, '',        'bold')
-call s:_('SpecialComment',       s:base7, '',        'bold')
+call s:h('Comment',              s:base6, '',        '')
+call s:h('CommentBold',          s:base6, '',        'bold')
+call s:h('SpecialComment',       s:base7, '',        'bold')
 hi! link CommentURL     URL
 hi! link CommentLabel   CommentBold
 hi! link CommentSection CommentBold
 hi! link Noise Comment
 
-call s:_('Global',               s:violet, '',         'bold')
-call s:_('PreProc',              s:magenta, '',        'none')
-call s:_('Macro',                s:blue, '',           'bold')
-call s:_('Define',               s:blue, '',           'bold')
-call s:_('PreCondit',            s:magenta, '',        'bold')
-call s:_('Include',              s:blue, '',           'bold')
+call s:h('Global',               s:blue_violet, '',         'bold')
+call s:h('PreProc',              s:blue_magenta, '',        'none')
+call s:h('Macro',                s:blue_main, '',           'bold')
+call s:h('Define',               s:blue_main, '',           'bold')
+call s:h('PreCondit',            s:blue_magenta, '',        'bold')
+call s:h('Include',              s:blue_main, '',           'bold')
 
-call s:_('Repeat',               s:blue, '',        '')
-call s:_('Keyword',              s:blue, '',        '')
-call s:_('Statement',            s:blue, '',        'none')
-call s:_('Label',                s:blue, '',        '')
+call s:h('Repeat',               s:keyword_color, '',        'none')
+call s:h('Keyword',              s:keyword_color, '',        'none')
+call s:h('Statement',            s:keyword_color, '',        'none')
+call s:h('Label',                s:keyword_color, '',        'none')
+call s:h('Conditional',          s:keyword_color, '',        'none')
 
-call s:_('Operator',             s:blue, '',        '')
+call s:h('Operator',             s:blue_main, '',        '')
 
-call s:_('Constant',             s:violet, '',        'bold')
-call s:_('ConstBuiltin',         s:magenta, '',       'bold')
+call s:h('Constant',             s:blue_violet, '',        'bold')
+call s:h('ConstBuiltin',         s:blue_magenta, '',       'bold')
 
-call s:_('Conditional',          s:blue, '',        '')
+call s:h('Number',               s:number_color, '',        'none')
+call s:h('Float',                s:number_color, '',        'none')
+call s:h('Boolean',              s:number_color, '',        'none')
+call s:h('Enum',                 s:number_color, '',        'none')
 
-call s:_('Number',               s:orange, '',        'none')
-call s:_('Float',                s:orange, '',        'none')
-call s:_('Boolean',              s:orange, '',        'none')
-call s:_('Enum',                 s:orange, '',        'none')
+call s:h('Delimiter',            s:blue_main,  '',        'none')
+call s:h('DelimiterAlt',         s:string_color, '',    'none')
+call s:h('SpecialChar',          s:base8, '',        'bold')
 
-call s:_('Delimiter',            s:blue,  '',        'none')
-call s:_('DelimiterAlt',         s:green_alt, '',    'none')
-call s:_('SpecialChar',          s:base8, '',        'bold')
+call s:h('String',               s:string_color, '',        'none')
+call s:h('StringDelimiter',      s:string_color, '',        'none')
 
-call s:_('String',               s:green, '',        'none')
-call s:_('StringDelimiter',      s:green, '',        'none')
-
-call s:_('Character',            s:green, '',        'bold')
-
-
-call s:_('Special',              s:violet, '',        'bold')
-call s:_('SpecialBold',          s:violet, '',        'bold')
+call s:h('Character',            s:string_color, '',        'bold')
 
 
-call s:_('Identifier',           s:magenta4, '',        'none')
-call s:_('Argument',             s:magenta4, '',        'none')
-call s:_('Variable',             s:magenta4, '',        'none')
-call s:_('VariableBuiltin',      s:violet, '',          'bold')
-
-call s:_('Function',             s:yellow, '',        'none')
-call s:_('FunctionBuiltin',      s:orange, '',        'bold')
-call s:_('Method',               s:yellow, '',        'none')
-
-call s:_('Symbol',               s:magenta4, '',        'none')
-call s:_('Control',              s:magenta4, '',        'none')
-call s:_('PredefinedIdentifier', s:magenta4, '',        'none')
-call s:_('Predefined',           s:magenta4, '',        'none')
-
-call s:_('StaticFunc',           s:cyan, '',        'none')
-call s:_('Property',             s:magenta4, '',        'none')
+call s:h('Special',              s:blue_violet, '',        'bold')
+call s:h('SpecialBold',          s:blue_violet, '',        'bold')
 
 
-call s:_('Type',                 s:yellow, '',        'none')
-call s:_('TypeBuiltin',          s:yellow, '',        'bold')
-call s:_('StorageClass',         s:blue, '',        'none')
-call s:_('Class',                s:blue, '',        'none')
-call s:_('Structure',            s:blue, '',        'none')
-call s:_('Typedef',              s:blue, '',        'none')
+call s:h('Identifier',           s:ident_color, '',        'none')
+call s:h('Argument',             s:ident_color, '',        'none')
+call s:h('Variable',             s:ident_color, '',        'none')
+call s:h('VariableBuiltin',      s:blue_violet, '',          'bold')
 
-call s:_('Regexp',               '#dd0093', 'none',        'none')
-call s:_('RegexpSpecial',        '#a40073', 'none',        'none')
-call s:_('RegexpDelimiter',      '#540063', 'none',        'bold')
-call s:_('RegexpKey',            '#5f0041', 'none',        'bold')
+call s:h('Function',             s:fn_color, '',        'none')
+call s:h('FunctionBuiltin',      s:fn_color, '',        'bold')
+call s:h('Method',               s:fn_color, '',        'none')
+
+call s:h('Property',             s:prop_color, '',        'none')
+
+call s:h('Type',                 s:type_color, '',       'none')
+call s:h('TypeBuiltin',          s:type_color, '',       'bold')
+call s:h('StorageClass',         s:blue_main, '',        'none')
+call s:h('Class',                s:blue_main, '',        'none')
+call s:h('Structure',            s:blue_main, '',        'none')
+call s:h('Typedef',              s:blue_main, '',        'none')
+
+call s:h('Regexp',               '#dd0093', 'none',        'none')
+call s:h('RegexpSpecial',        '#a40073', 'none',        'none')
+call s:h('RegexpDelimiter',      '#540063', 'none',        'bold')
+call s:h('RegexpKey',            '#5f0041', 'none',        'bold')
 
 " }}}
 " Diff                                                                       {{{
 
-call s:_('diffLine',    s:base8, s:diff_info_bg1, 'none')
-call s:_('diffSubName', s:base8, s:diff_info_bg1, 'none')
+call s:h('diffLine',    s:base8, s:diff_info_bg1, 'none')
+call s:h('diffSubName', s:base8, s:diff_info_bg1, 'none')
 
 hi! clear DiffAdd
 hi! clear DiffChange
 hi! clear DiffText
 hi! clear DiffDelete
 
-call s:_('DiffAdd',    '',              s:diff_add_bg2,  'none')
-call s:_('DiffChange', '',              s:diff_add_bg2,  'none')
-call s:_('DiffText',   '',              s:diff_add_bg0,  'none')
-call s:_('DiffDelete', s:gh_danger_bg0, s:gh_danger_bg1, 'none')
+call s:h('DiffAdd',    '',              s:diff_add_bg2,  'none')
+call s:h('DiffChange', '',              s:diff_add_bg2,  'none')
+call s:h('DiffText',   '',              s:diff_add_bg0,  'none')
+call s:h('DiffDelete', s:gh_danger_bg0, s:gh_danger_bg1, 'none')
 
-call s:_('DiffAdded',    s:diff_add_fg0,  s:diff_add_bg2,  'none')
-call s:_('DiffModified', s:fg,            s:diff_info_bg0, 'none')
-call s:_('DiffRemoved',  s:gh_danger_fg0, s:gh_danger_bg2, 'none')
+call s:h('DiffAdded',    s:diff_add_fg0,  s:diff_add_bg2,  'none')
+call s:h('DiffModified', s:fg,            s:diff_info_bg0, 'none')
+call s:h('DiffRemoved',  s:gh_danger_fg0, s:gh_danger_bg2, 'none')
 
-call s:_('DiffAddedGutter',          s:diff_add_fg,  'none', 'bold')
-call s:_('DiffModifiedGutter',       s:diff_info_fg, 'none', 'bold')
-call s:_('DiffRemovedGutter',        s:gh_danger_fg, 'none', 'bold')
+call s:h('DiffAddedGutter',          s:diff_add_fg,  'none', 'bold')
+call s:h('DiffModifiedGutter',       s:diff_info_fg, 'none', 'bold')
+call s:h('DiffRemovedGutter',        s:gh_danger_fg, 'none', 'bold')
 
-call s:_('DiffAddedText',          s:diff_add_fg,  'none', 'none')
-call s:_('DiffModifiedText',       s:diff_info_fg, 'none', 'none')
-call s:_('DiffRemovedText',        s:gh_danger_fg, 'none', 'none')
+call s:h('DiffAddedText',          s:diff_add_fg,  'none', 'none')
+call s:h('DiffModifiedText',       s:diff_info_fg, 'none', 'none')
+call s:h('DiffRemovedText',        s:gh_danger_fg, 'none', 'none')
 
-call s:_('DiffAddedGutterLineNr',    s:fg_linenr, 'none', 'none')
-call s:_('DiffModifiedGutterLineNr', s:fg_linenr, 'none', 'none')
-call s:_('DiffRemovedGutterLineNr',  s:fg_linenr, 'none', 'none')
+call s:h('DiffAddedGutterLineNr',    s:fg_linenr, 'none', 'none')
+call s:h('DiffModifiedGutterLineNr', s:fg_linenr, 'none', 'none')
+call s:h('DiffRemovedGutterLineNr',  s:fg_linenr, 'none', 'none')
 
 " Gitgutter
 
@@ -449,7 +463,7 @@ hi! link GitGutterDeleteLineNr       DiffRemovedTextLineNr
 "                                                                            }}}
 " Biscuit                                                                    {{{
 
-call s:_('BiscuitColor', s:base5, 'none', 'none')
+call s:h('BiscuitColor', s:base5, 'none', 'none')
 
 "                                                                            }}}
 " Clap                                                                       {{{
@@ -460,22 +474,22 @@ hi! link ClapPreview NormalPopupPrompt
 "                                                                            }}}
 " Treesitter Context                                                         {{{
 
-call s:_('TreesitterContext',           s:fg,                      s:bg_popup)
-call s:_('TreesitterContextLineNumber', color#Lighten(s:fg_linenr, 0.4), s:bg_popup)
+call s:h('TreesitterContext',           s:fg,                      s:bg_popup)
+call s:h('TreesitterContextLineNumber', color#Lighten(s:fg_linenr, 0.4), s:bg_popup)
 
 "                                                                            }}}
 " Debugger                                                                   {{{
 
-call s:_('DapUIFloatBorder',      s:base5, '', '')
+call s:h('DapUIFloatBorder',      s:base5, '', '')
 
-call s:_('DapCurrentLine',        '',       '#444400', '')
-call s:_('DapCurrentLineNum',     s:yellow, '#5E5E00', 'bold')
-call s:_('DapBreakpointNum',      s:red,    '',        'bold')
-call s:_('DapLogpointNum',        s:orange, '',        'bold')
+call s:h('DapCurrentLine',        '',       '#444400', '')
+call s:h('DapCurrentLineNum',     s:yellow, '#5E5E00', 'bold')
+call s:h('DapBreakpointNum',      s:red,    '',        'bold')
+call s:h('DapLogpointNum',        s:orange, '',        'bold')
 
 
-call s:_('DbgCurrent',           '#DEEBFE', '#345FA8', '')
-call s:_('DbgBreakPt',           '',        '#4F0037', '')
+call s:h('DbgCurrent',           '#DEEBFE', '#345FA8', '')
+call s:h('DbgBreakPt',           '',        '#4F0037', '')
 
 "                                                                            }}}
 " CoC                                                                        {{{
@@ -484,18 +498,18 @@ let s:fg_hint = color#Darken(s:teal, 0.1)
 let s:fg_inlay_hint = s:base5
 let s:sp_hint = s:teal
 
-call s:_('CocHintSign',         s:fg_hint)
-call s:_('CocHintFloat',        s:fg_hint)
-call s:_('CocHintVirtualText',  s:fg_inlay_hint)
+call s:h('CocHintSign',         s:fg_hint)
+call s:h('CocHintFloat',        s:fg_hint)
+call s:h('CocHintVirtualText',  s:fg_inlay_hint)
 
 hi! link CocInlayHint        CocHintVirtualText
 hi! link CocRustTypeHint     CocHintVirtualText
 hi! link CocRustChainingHint CocHintVirtualText
 
-call s:_('CocHintHighlight',    '', '', 'undercurl', s:sp_hint)
-call s:_('CocUnusedHighlight',  '', '', 'undercurl', s:sp_hint)
+call s:h('CocHintHighlight',    '', '', 'undercurl', s:sp_hint)
+call s:h('CocUnusedHighlight',  '', '', 'undercurl', s:sp_hint)
 
-" call s:_('CocFloating',         s:base5, s:bg_popup)
+" call s:h('CocFloating',         s:base5, s:bg_popup)
 
 hi! link CocFloating       Pmenu
 hi! link CocPumMenu        Pmenu
@@ -503,13 +517,13 @@ hi! link CocMenuSel        PmenuSel
 hi! link CocPumDetail      Normal
 hi! link CocPumVirtualText Normal
 hi! link CocPumShortcut    Pmenu
-call s:_('CocPumSearch', color#Lighten(s:magenta, 0.2), '', 'bold')
+call s:h('CocPumSearch', color#Lighten(s:blue_main, 0.2), '', 'bold')
 
 "                                                                            }}}
 " Plugin: EasyMotion, Sneak {{{
 
-call s:_('JumpTarget',          s:red,  '', 'bold')
-call s:_('JumpTargetSecondary', s:blue, '', 'bold')
+call s:h('JumpTarget',          s:red,  '', 'bold')
+call s:h('JumpTargetSecondary', s:blue_main, '', 'bold')
 
 hi!  link EasyMotionShadeDefault  Comment
 hi!  link EasyMotionTargetDefault JumpTarget
@@ -533,7 +547,7 @@ hi! link IndentBlanklineSpaceCharBlankline IndentGuide
 " }}}
 " Plugin: Illuminate {{{
 
-call s:_('IlluminateWord', '', color#Lighten(s:bg_highlight, 0.2), 'none')
+call s:h('IlluminateWord', '', color#Lighten(s:bg_highlight, 0.2), 'none')
 hi! link IlluminatedWordRead IlluminateWord
 hi! link IlluminatedWordText IlluminateWord
 hi! link IlluminatedWordWrite IlluminateWord
@@ -541,12 +555,12 @@ hi! link IlluminatedWordWrite IlluminateWord
 " }}}
 " Plugin: Sidebar {{{
 
-" call s:_('SidebarNvimSectionSeparator', s:base6)
+" call s:h('SidebarNvimSectionSeparator', s:base6)
 
-call s:_('SidebarNvimNormal',           s:fg,           s:bg_alt, 'none')
-call s:_('SidebarNvimSectionSeparator', s:fg_separator, s:bg_alt)
-call s:_('SidebarNvimSectionTitle',     s:yellow, s:bg_alt, 'bold')
-call s:_('SidebarNvimEndOfBuffer',      s:bg_alt,       s:bg_alt, 'none')
+call s:h('SidebarNvimNormal',           s:fg,           s:bg_alt, 'none')
+call s:h('SidebarNvimSectionSeparator', s:fg_separator, s:bg_alt)
+call s:h('SidebarNvimSectionTitle',     s:yellow, s:bg_alt, 'bold')
+call s:h('SidebarNvimEndOfBuffer',      s:bg_alt,       s:bg_alt, 'none')
 
 hi! link SidebarNvimLabelCount Comment
 
