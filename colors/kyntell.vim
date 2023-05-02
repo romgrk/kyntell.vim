@@ -347,9 +347,9 @@ call s:h('Link',                 s:tag, '',        'underline')
 call s:h('URL',                  s:tag, '',        'underline')
 hi! link Underlined     URL
 
-call s:h('Comment',              s:base6, '',        '')
-call s:h('CommentBold',          s:base6, '',        'bold')
-call s:h('SpecialComment',       s:base7, '',        'bold')
+call s:h('Comment',              s:base7, '',        '')
+call s:h('CommentBold',          s:base7, '',        'bold')
+call s:h('SpecialComment',       s:base8, '',        'bold')
 hi! link CommentURL     URL
 hi! link CommentLabel   CommentBold
 hi! link CommentSection CommentBold
