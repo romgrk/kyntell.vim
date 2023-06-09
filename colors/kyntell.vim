@@ -371,7 +371,7 @@ call s:h('Conditional',          s:keyword_color, '',        'none')
 call s:h('Operator',             s:blue_main, '',        '')
 
 call s:h('Constant',             s:blue_violet, '',        'bold')
-call s:h('ConstBuiltin',         s:blue_magenta, '',       'bold')
+call s:h('ConstBuiltin',         s:number_color, '',       'none')
 
 call s:h('Number',               s:number_color, '',        'none')
 call s:h('Float',                s:number_color, '',        'none')
