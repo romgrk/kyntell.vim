@@ -102,6 +102,7 @@ let s:blue_magenta4 = color#Lighten(s:blue_magenta, 0.0)
 let s:bg             = color#Mix(s:base3, s:base4, 0.2)
 let s:bg_alt         = s:base2
 let s:bg_highlight   = color#Lighten(s:bg, 0.3)
+let s:bg_highlight2  = color#Lighten(s:bg, 0.6)
 let s:bg_popup       = color#Mix(s:base4, s:base5, 0.7)
 let s:bg_widget      = s:bg
 let s:bg_statusline  = color#Lighten(s:base4, 0.3)
@@ -156,6 +157,8 @@ call s:h('Cursor',           '', s:base0,  'reverse')
 call s:h('SecondaryCursor',  '', s:highlight, 'none')
 
 call s:h('Folded',           s:base7,  s:bg_highlight, 'none')
+call s:h('FoldedText',       s:base7,  s:bg_highlight2, 'none')
+call s:h('FoldedIcon',       s:bg_highlight2, s:bg_highlight, 'none')
 call s:h('FoldColumn',       s:fg_alt, s:bg_widget, '')
 call s:h('SignColumn',       '',       s:bg_widget, '')
 call s:h('ColorColumn',      '',       s:bg_highlight, '')
