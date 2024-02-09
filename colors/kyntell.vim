@@ -645,6 +645,7 @@ hi! link @markup.heading.3      Directory
 hi! link @markup.heading.4      Directory
 hi! link @markup.heading.5      Directory
 hi! link @markup.heading.6      Directory
+hi! link @markup.raw.delimiter  Delimiter
 
 hi! link @text.literal String
 
