@@ -638,6 +638,13 @@ hi! link @underline             Underlined
 hi! link @uri                   URL
 hi! link @variable              NormalText
 hi! link @variable.builtin      VariableBuiltin
+hi! link @variable.member       Property
+hi! link @markup.heading.1      Directory
+hi! link @markup.heading.2      Directory
+hi! link @markup.heading.3      Directory
+hi! link @markup.heading.4      Directory
+hi! link @markup.heading.5      Directory
+hi! link @markup.heading.6      Directory
 
 hi! link @text.literal String
 
