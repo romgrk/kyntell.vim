@@ -598,6 +598,7 @@ hi! link @constant              Constant
 hi! link @constant.builtin      ConstBuiltin
 hi! link @constant.macro        Macro
 hi! link @constant.ructor       Method
+hi! link @comment.note          Todo
 hi! link @emphasis              Emphasis
 hi! link @error                 Error
 hi! link @exception             Error
