@@ -635,6 +635,7 @@ hi! link @tag.delimiter         Delimiter
 hi! link @text                  String
 hi! link @title                 Title
 hi! link @type                  Type
+hi! link @type.qualifier        Keyword
 hi! link @type.builtin          TypeBuiltin
 hi! link @underline             Underlined
 hi! link @uri                   URL
