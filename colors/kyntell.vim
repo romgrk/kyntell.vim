@@ -309,7 +309,7 @@ let s:text_colors = {
 \ 'Normal':  s:fg,
 \ 'Info':    s:blue_main,
 \ 'Hint':    s:teal,
-\ 'Success': s:green,
+\ 'Success': color#Darken(s:green, 0.1),
 \ 'Warning': s:yellow,
 \ 'Debug':   s:yellow,
 \ 'Error':   s:red,
