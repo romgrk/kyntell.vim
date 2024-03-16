@@ -313,7 +313,7 @@ let s:text_colors = {
 \ 'Warning': s:yellow,
 \ 'Debug':   s:yellow,
 \ 'Error':   s:red,
-\ 'Special': s:blue_violet,
+\ 'Special': s:magenta,
 \ 'Muted':   s:base7,
 \}
 for key in keys(s:text_colors)
