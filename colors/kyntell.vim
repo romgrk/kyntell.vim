@@ -171,6 +171,7 @@ call s:h('LineNr',           s:fg_linenr, s:bg_widget,    'none')
 call s:h('IndentGuide',      s:base4, '', '')
 call s:h('IndentGuidesEven', s:base4, '', '')
 call s:h('IndentGuidesOdd',  s:base4, '', '')
+call s:h('IndentGuideScope', s:base5, '', '')
 
 call s:h('TermCursor',       s:fg,        'none',            'reverse')
 call s:h('TermCursorNC',     s:fg_alt,    'none',            'reverse')
@@ -190,6 +191,9 @@ call s:h('StatusLinePartNC', s:base6,  s:bg_statusline, 'bold')
 
 call s:h('Separator', s:fg_alt, 'none')
 call s:h('VertSplit', s:fg_separator,   s:bg, 'none')
+call s:h('WinSeparator', s:fg_separator,   s:bg, 'none')
+
+call s:h('WinSeparator', s:fg_separator,   s:bg, 'none')
 
 call s:h('Pmenu',        s:fg_popup,      s:bg_popup)
 call s:h('PmenuSel',     s:hightlight_fg, s:highlight)
@@ -204,7 +208,8 @@ if exists('&pumblend')
   set pumblend=20
 end
 
-call s:h('WinBar',          s:fg,     s:bg, 'none', s:base4)
+call s:h('WinBar',          s:fg_subtle,     s:bg, 'none', s:base4)
+call s:h('WinBarNC',        s:fg_subtle,     s:bg, 'none', s:base4)
 call s:h('WinBarSeparator', s:base6,  s:bg, 'none', s:base4)
 call s:h('WinBarModified',  s:yellow, s:bg, 'none', s:base4)
 
@@ -251,7 +256,7 @@ call s:h('BufferScrollArrow',    s:base8,          s:bg_other,       'bold')
 
 call s:h('BufferPart',        s:diff_info_fg,   s:diff_info_bg0, 'bold')
 
-if has("nvim") && get(g:, 'doom_one_terminal_colors', v:false)
+if has('nvim') && get(g:, 'doom_one_terminal_colors', v:false)
   let g:terminal_color_0 = s:bg
   let g:terminal_color_1 = s:red
   let g:terminal_color_2 = s:green_alt
@@ -277,9 +282,10 @@ endif
 
 " let s:bg_search = color#Mix(s:bg, s:yellow, 0.2)
 let s:bg_search         = color#Mix(s:yellow, s:bg, 0.8)
-let s:bg_search_current = s:orange
+let s:bg_search_current = color#Mix(s:yellow, s:bg, 0.8)
 
 call s:h('Search',          '', s:bg_search,         'none')
+call s:h('CurSearch',       '', s:bg_search_current, 'none')
 call s:h('IncSearch',       s:hightlight_fg, s:bg_search_current, 'none')
 call s:h('IncSearchCursor', s:hightlight_fg, s:white,             'none')
 
@@ -543,9 +549,8 @@ hi! link LeapBackdrop       EasyMotionShadeDefault
 " }}}
 " Plugin: IndentBlankline {{{
 
-hi! link IndentBlanklineChar               IndentGuide
-hi! link IndentBlanklineSpaceChar          IndentGuide
-hi! link IndentBlanklineSpaceCharBlankline IndentGuide
+hi! link IblIndent         IndentGuide
+hi! link IblScope          IndentGuideScope
 
 " }}}
 " Plugin: Illuminate {{{
