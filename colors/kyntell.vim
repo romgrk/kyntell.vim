@@ -280,14 +280,13 @@ endif
 " }}}
 " Search, Highlight, Conceal, Messages                                       {{{
 
-" let s:bg_search = color#Mix(s:bg, s:yellow, 0.2)
 let s:bg_search         = color#Mix(s:yellow, s:bg, 0.8)
-let s:bg_search_current = color#Mix(s:yellow, s:bg, 0.8)
+let s:bg_search_current = color#Mix(s:yellow, s:bg, 0.7)
 
 call s:h('Search',          '', s:bg_search,         'none')
-call s:h('CurSearch',       '', s:bg_search_current, 'none')
-call s:h('IncSearch',       s:hightlight_fg, s:bg_search_current, 'none')
-call s:h('IncSearchCursor', s:hightlight_fg, s:white,             'none')
+call s:h('CurSearch',       '', s:bg_search,         'none')
+call s:h('IncSearch',       s:yellow, s:bg_search_current, 'bold')
+call s:h('IncSearchCursor', '', s:white,             'none')
 
 call s:h('Conceal',         s:fg_conceal, 'none', '')
 call s:h('SpecialKey',      s:blue_violet,     'none', 'bold')
