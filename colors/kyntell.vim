@@ -619,6 +619,7 @@ hi! link @keyword.operator      Operator
 hi! link @label                 Label
 hi! link @literal               Constant
 hi! link @method                Method
+hi! link @module                Type
 hi! link @namespace             Directory
 hi! link @number                Number
 hi! link @operator              Operator
