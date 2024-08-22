@@ -91,6 +91,8 @@ let s:yellow_main = '#e5ce5c'
 
 let s:keyword_color = s:blue_main
 let s:string_color  = '#f9c859'
+let s:regex_color   = '#dd0093'
+let s:special_color = '#EB05AA'
 let s:fn_color      = '#DFD9A3'
 let s:number_color  = s:orange
 let s:ident_color   = color#Lighten(s:blue_desat, 0.1)
@@ -392,9 +394,9 @@ call s:h('SpecialChar',          s:base8, '',        'bold')
 
 call s:h('String',               s:string_color, '',        'none')
 call s:h('StringDelimiter',      s:string_color, '',        'none')
+call s:h('StringSpecial',        s:special_color, '',       'bold')
 
 call s:h('Character',            s:string_color, '',        'bold')
-
 
 call s:h('Special',              s:blue_violet, '',        'bold')
 call s:h('SpecialBold',          s:blue_violet, '',        'bold')
@@ -418,10 +420,10 @@ call s:h('Class',                s:blue_main, '',        'none')
 call s:h('Structure',            s:blue_main, '',        'none')
 call s:h('Typedef',              s:blue_main, '',        'none')
 
-call s:h('Regexp',               '#dd0093', 'none',        'none')
-call s:h('RegexpSpecial',        '#a40073', 'none',        'none')
-call s:h('RegexpDelimiter',      '#540063', 'none',        'bold')
-call s:h('RegexpKey',            '#5f0041', 'none',        'bold')
+call s:h('Regexp',               s:regex_color,   'none', 'none')
+call s:h('RegexpSpecial',        s:special_color, 'none', 'bold')
+call s:h('RegexpDelimiter',      '#540063',       'none', 'bold')
+call s:h('RegexpKey',            '#5f0041',       'none', 'bold')
 
 " }}}
 " Diff                                                                       {{{
@@ -593,10 +595,13 @@ hi! link helpURL           URL
 
 if has('nvim-0.8')
 
+" https://neovim.io/doc/user/treesitter.html#treesitter-highlight-groups
+
 hi! link @annotation            PreProc
 hi! link @attribute             Macro
 hi! link @boolean               Boolean
 hi! link @character             Character
+hi! link @character.special     StringSpecial
 hi! link @conditional           Conditional
 hi! link @constant              Constant
 hi! link @constant.builtin      ConstBuiltin
@@ -631,8 +636,9 @@ hi! link @punctuation.delimiter Delimiter
 hi! link @punctuation.special   DelimiterAlt
 hi! link @repeat                Repeat
 hi! link @string                String
-hi! link @string.escape         StringDelimiter
+hi! link @string.escape         StringSpecial
 hi! link @string.regex          Regexp
+hi! link @string.regexp         Regexp
 hi! link @strong                Bold
 hi! link @structure             Structure
 hi! link @tag                   Keyword
