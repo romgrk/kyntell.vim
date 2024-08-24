@@ -543,6 +543,7 @@ hi!  link SneakPluginTarget       JumpTarget
 hi!  link SneakStreakTarget       JumpTarget
 hi!  link SneakStreakMask         EasyMotionShadeDefault
 
+hi! link LeapLabel          JumpTarget
 hi! link LeapLabelPrimary   JumpTarget
 hi! link LeapLabelSecondary JumpTargetSecondary
 hi! link LeapBackdrop       EasyMotionShadeDefault
