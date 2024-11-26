@@ -229,9 +229,9 @@ let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base4
 
-call s:h('TabLine',             s:base9, s:bg_alt,     '')
-call s:h('TabLineSel',          s:blue_main,  s:bg_current, 'bold')
-call s:h('TabLineFill',         'none',  s:bg_other,   'bold')
+call s:h('TabLine',             s:base9,     s:bg_alt,     'none')
+call s:h('TabLineSel',          s:blue_main, s:bg_current, 'none')
+call s:h('TabLineFill',         'none',      s:bg_other,   'none')
 
 call s:h('BufferCurrent',       s:base10,          s:bg_current,  'none')
 call s:h('BufferCurrentIndex',  s:base7,          s:bg_current,  'none')
