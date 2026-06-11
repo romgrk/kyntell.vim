@@ -121,13 +121,22 @@ let s:fg_subtle    = s:base7
 let s:fg_highlight = color#Lighten(s:fg, 0.2)
 let s:fg_linenr    = color#Mix(s:base4, s:base5, 0.9)
 let s:fg_separator = s:base4
-
+let s:fg_title     = s:yellow
 
 let s:highlight       = s:blue_main
 let s:hightlight_fg = s:base0
 
 let s:tag    = color#Mix(s:blue_main, s:cyan)
 
+" heading colors
+let s:h1 = s:yellow
+let s:h2 = s:yellow
+let s:h3 = s:orange
+let s:h4 = s:violet
+let s:h5 = s:blue_violet
+let s:h6 = s:blue_desat
+
+" diff colors
 let s:diff_info_fg  = s:blue_main
 let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
 let s:diff_info_bg1 = color#Mix('#D8EEFD', s:bg, 0.8)
@@ -165,7 +174,7 @@ call s:h('FoldColumn',       s:fg_alt, s:bg_widget, '')
 call s:h('SignColumn',       '',       s:bg_widget, '')
 call s:h('ColorColumn',      '',       s:bg_highlight, '')
 
-call s:h('CursorLine',       '',          s:bg_highlight)
+call s:h('CursorLine',       '',          s:bg_highlight, 'none')
 call s:h('CursorColumn',     '',          s:bg_highlight)
 call s:h('CursorLineNr',     s:highlight, s:bg_highlight, 'none')
 call s:h('LineNr',           s:fg_linenr, s:bg_widget,    'none')
@@ -302,10 +311,10 @@ call s:h('HighlightSubtle', '', s:bg_highlighted, 'none')
 
 call s:h('Question',        s:green, '', 'bold')
 
-call s:h('File',            s:fg,      '', 'bold')
-call s:h('Directory',       s:yellow,  '', 'bold')
-call s:h('Section',         s:blue_magenta, '', 'bold')
-call s:h('Title',           s:blue_violet,  '', 'bold')
+call s:h('File',            s:fg,       '', 'bold')
+call s:h('Directory',       s:fg_title, '', 'bold')
+call s:h('Section',         s:fg_title, '', 'bold')
+call s:h('Title',           s:fg_title, '', 'bold')
 
 call s:h('Bold', '', '', 'bold')
 call s:h('Emphasis', s:green, '', 'bold')
@@ -549,6 +558,13 @@ hi! link LeapLabelSecondary JumpTargetSecondary
 hi! link LeapBackdrop       EasyMotionShadeDefault
 
 " }}}
+" Plugin: GrugFar {{{
+hi! link GrugFarResultsMatch          JumpTarget
+hi! link GrugFarResultsLineNo         Number
+hi! link GrugFarResultsLineColumn     LineNr
+hi! link GrugFarResultsPath           Directory
+hi! link GrugFarResultsNumberLabel    Comment
+
 " Plugin: IndentBlankline {{{
 
 hi! link IblIndent         IndentGuide
@@ -654,13 +670,13 @@ hi! link @uri                   URL
 hi! link @variable              NormalText
 hi! link @variable.builtin      VariableBuiltin
 hi! link @variable.member       Property
-hi! link @markup.heading.1      Directory
-hi! link @markup.heading.2      Directory
-hi! link @markup.heading.3      Directory
-hi! link @markup.heading.4      Directory
-hi! link @markup.heading.5      Directory
-hi! link @markup.heading.6      Directory
 hi! link @markup.raw.delimiter  Delimiter
+call s:h('@markup.heading.1',   s:h1, '', 'bold,underline')
+call s:h('@markup.heading.2',   s:h2, '', 'bold')
+call s:h('@markup.heading.3',   s:h3, '', 'bold')
+call s:h('@markup.heading.4',   s:h4, '', 'bold')
+call s:h('@markup.heading.5',   s:h5, '', 'bold')
+call s:h('@markup.heading.6',   s:h6, '', 'bold')
 
 hi! link @text.literal String
 
